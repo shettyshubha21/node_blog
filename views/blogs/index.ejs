@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs')%>
+    <body>
+      <%- include('../partials/nav.ejs')%> 
+      <%- include('../partials/carousel.ejs')%> 
+    <div class="container pt-5 pb-5">
+    <div class="card">
+       <div class="card-header">
+           <h2 class="font-weight-bold">All Blogs</h2>
+       </div>
+       <div class="card-body">
+        
+            <% if(blogs.length>0) { 
+                blogs.forEach(blog=>{
+                    let temp=blog.id;
+                    temp=temp*7892;
+                    const id=Buffer.from(String(temp)).toString('base64');
+                    %>
+                    <div class="alert alert-info" role="alert">
+                    <a href="/blogs/<%= id %>" class="text-decoration-none">
+                <h3 class="font-weight-bold"><%= blog.title %></h3>
+                <p>Click to View More</p>
+                </a>
+            </div>
+                <% });
+            } else {%>
+                <div class="alert alert-info" role="alert">
+                <p >There are no blogs to display...</p>
+    </div>
+                <% }%>
+          
+       </div>
+        
+    </div>
+      
+    </div>
+
+
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>
